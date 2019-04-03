@@ -1,0 +1,24 @@
+ <div class="checkout-block" id="block-additional-shipping-fields" data-bind="visible: selectedMethod() == 'shippingadditional_shippingadditional'">
+    <div class="row">
+		<div class="input-box col-sm-12">
+            <select id="ship_carrier_ship_method" name="ship_carrier_ship_method"
+                    title="Shipping Carrier & Shipping Method" data-bind="options: availableOptions,
+                        optionsText: 'title',
+                        value: selectedOption,
+                        optionsValue: 'val',
+                        optionsCaption: 'Choose...'" class="required validate-select" data-validate='{"required":true}'
+                    required="true">
+            </select>
+            <div class="note">We will do our best to honor your selection. Please keep in mind Integrated Solutions Group cannot guarantee that your delivery preference
+                (standard, expedited, etc.) will be available from your designated carrier.</div>
+        </div>
+        <div class="input-box col-sm-12">
+            <label>Account Number</label>
+            <input name="account_number" id="account_number" title="Account Number"
+                   type="text"
+                   class="required datetime-validation validate-no-empty" data-validate='{"required":true}'
+                   required="true">
+        </div>
+        
+    </div>
+</div>

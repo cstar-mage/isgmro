@@ -1,0 +1,131 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: gialam
+ * Date: 27/03/2017
+ * Time: 16:31
+ */
+?>
+<?php /** $block Magenest\QuickBooksOnline\Block\Adminhtml\Update\UpdateProduct */ ?>
+<div class="query_form">
+    <select class="select_option">
+        <option value="all"><?php echo __('All') ?></option>
+        <option value="time_start"><?php echo __('Time Start') ?></option>
+        <option value="time_around"><?php echo __('Time Around') ?></option>
+        <option value="name"><?php echo __('Name') ?></option>
+        <option value="id"><?php echo __('Id') ?></option>
+    </select>
+    <input class="input_query" id="input_query" placeholder="Input query" value="">
+    <input type="date"  class="date_time" id="time_from" name="time_from" value="" placeholder="From">
+    <input type="date"  class="date_time" id="time_to" name="time_to" value="" placeholder="To">
+    <input type="button" class="show_product" title="<?php echo __('Submit'); ?>" value="<?php echo __('Submit'); ?>">
+</div>
+<form class="form-product-edit"  method="post" id="form-validate" enctype="multipart/form-data"
+      action="<?php echo $block->saveProduct()?>"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+    <div class="admin__data-grid-wrap admin__data-grid-wrap-static">
+        <table class="data-grid" id="table_product">
+            <thead>
+            <tr>
+                <th scope="col" class="col stt" style="text-align: center;"><?php /* @escapeNotVerified */ echo __('STT') ?></th>
+                <th scope="col" class="col id" style="text-align: center;"><?php /* @escapeNotVerified */ echo __('ID Quickbook') ?></th>
+                <th scope="col" class="col name" style="text-align: center;"><?php /* @escapeNotVerified */ echo __('Name') ?></th>
+                <th scope="col" class="col type" style="text-align: center;"><?php /* @escapeNotVerified */ echo __('Type') ?></th>
+                <th scope="col" class="col description" style="text-align: center;"><?php /* @escapeNotVerified */ echo __('Description') ?></th>
+                <th scope="col" class="col price" style="text-align: center;"><?php /* @escapeNotVerified */ echo __('Price') ?></th>
+                <th scope="col" class="col qty" style="text-align: center;"><?php /* @escapeNotVerified */ echo __('Qty') ?></th>
+                <th scope="col" class="col action" style="text-align: center;"></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <br><br>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action save primary" data-action="save-address"
+                        title="<?php /* @escapeNotVerified */ echo __('Save') ?>">
+                    <span><?php /* @escapeNotVerified */ echo __('Save ') ?></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    require([
+        "jquery",
+        "mage/calendar"
+    ], function($){
+//        $("#input_query").hide();
+//        $("#time_from").hide();
+//        $("#time_to").hide();
+
+        var requestUrl = '<?php echo $block->getInformationProduct(); ?>';
+        var inputQuery = '';
+        var timeFrom = '';
+        var timeTo = '';
+//        $(".select_option").change(function () {
+//            var select = $(this).val();
+//            if (select == 'all') {
+//                $("#input_query").hide();
+//                $("#time_from").hide();
+//                $("#time_to").hide();
+//            }
+//            if (select == 'time_start') {
+//                $("#input_query").hide();
+//                $("#time_from").show();
+//                $("#time_to").hide();
+//            }
+//            if (select == 'time_around') {
+//                $("#input_query").hide();
+//                $("#time_from").show();
+//                $("#time_to").show();
+//            }
+//            if (select == 'name' || select == 'id') {
+//                $("#input_query").show();
+//                $("#time_from").hide();
+//                $("#time_to").hide();
+//            }
+//        });
+        $(".show_product").click(function(){
+            var selectOption = $( ".select_option" ).val();
+            if (selectOption == 'time_start') {
+                timeFrom = $("#time_from").val();
+            }
+            if (selectOption == 'time_around') {
+                timeFrom = $("#time_from").val();
+                timeTo = $("#time_to").val();
+            }
+            if (selectOption == 'name' || selectOption == 'id') {
+                inputQuery = $("#input_query").val();
+            }
+            $("tbody").empty();
+            $.ajax({
+                url: requestUrl+ '?type=' + selectOption + '&input=' + inputQuery + '&from=' + timeFrom + '&to=' + timeTo,
+                type: "POST",
+                contentType: false,
+                cache: false,
+                processData: false,
+                data: {form_key: '<?php echo $block->getFormKey() ?>'},
+                success: function (response) {
+                    var results = JSON.parse(response);
+                    $("tbody").append(results);
+                    $(".delete_row").click(function(){
+                        $(this).closest('tr').remove();
+                    });
+                },
+                showLoader: true
+            });
+        });
+
+
+        $(".date_time").calendar({
+            buttonText:"<?php echo __('Select Date') ?>",
+            dateFormat: "yy-mm-dd",
+            showsTime: false
+        });
+    });
+</script>

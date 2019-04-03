@@ -1,0 +1,204 @@
+<?php
+/** @var Magenest\QuickBooksOnline\Block\Adminhtml\Request\Form $block */
+?>
+<section class="admin__page-section order-view-billing-shipping">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */
+            echo __('Today') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+
+        <div class="admin__page-section-item order-payment-method admin__fieldset-wrapper">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */
+                    echo __('Total Request Today') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <span style="font-size: 12pt">Total: </span>
+                <span class="title" style="font-size: 12pt"><?php /* @escapeNotVerified */
+                    echo $block->getTodayRequest('All') ? $block->getTodayRequest('All') : '0' ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <span style="font-size: 12pt">Success: </span>
+                <span class="title" style="font-size: 12pt"><?php /* @escapeNotVerified */
+                    echo $block->getTotalSuccess('All') ? $block->getTotalSuccess('All') : '0' ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <span style="font-size: 12pt">Fail: </span>
+                <span class="title" style="font-size: 12pt"><?php /* @escapeNotVerified */
+                    echo $block->getTotalFail('All') ? $block->getTotalFail('All') : '0' ?></span>
+            </div>
+        </div>
+
+        <div class="admin__page-section-item order-information">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php echo __('Detail') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary" border="1">
+                    <tbody>
+                    <tr>
+                        <td style="font-size: 13pt; font-weight: bold"><?php /* @escapeNotVerified */ echo __('Type') ?></td>
+                        <td style="font-size: 13pt; font-weight: bold"><?php /* @escapeNotVerified */ echo __('Success Request') ?></td>
+                        <td style="font-size: 13pt; font-weight: bold"><?php /* @escapeNotVerified */ echo __('Fail Request') ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */ echo __('Customer') ?></td>
+                        <td><?php echo $block->getTotalSuccess('Customer') ? $block->getTotalSuccess('Customer') : 'No request' ?></td>
+                        <td><?php echo $block->getTotalFail('Customer') ? $block->getTotalFail('Customer') : 'No request' ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Item') ?></td>
+                        <td><?php echo $block->getTotalSuccess('Item') ? $block->getTotalSuccess('Item') : 'No request' ?></td>
+                        <td><?php echo $block->getTotalFail('Item') ? $block->getTotalFail('Item') : 'No request' ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Order') ?></td>
+                        <td><?php echo $block->getTotalSuccess('SalesReceipt') ? $block->getTotalSuccess('SalesReceipt') : 'No request' ?></td>
+                        <td><?php echo $block->getTotalFail('SalesReceipt') ? $block->getTotalFail('SalesReceipt') : 'No request' ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Invoice') ?></td>
+                        <td><?php echo $block->getTotalSuccess('Invoice') ? $block->getTotalSuccess('Invoice') : 'No request' ?></td>
+                        <td><?php echo $block->getTotalFail('SalesReceipt') ? $block->getTotalFail('SalesReceipt') : 'No request' ?></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</section>
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Other days') ?></span>
+    </div>
+    <div class="field overview required" data-role="filter-form" id="date_range">
+     <span class="field-row">
+         <label for="date_from">
+             <span><?php echo __('From') ?>:</span>
+         </label>
+         <input class="input-text required-entry" type="text" id="date_from" name="from"/>
+         <span id="date_from_advice"></span>
+       </span>
+       <span class="field-row">
+             <label for="date_to">
+                 <span><?php echo __('To') ?>:</span>
+             </label>
+             <input class="input-text required-entry" type="text" id="date_to" name="report_to"/>
+             <span id="date_to_advice"></span>
+        </span>
+         <span class="field-row">
+             <button value="" id="submit_date" name="submit_date" class="submit_date">
+                 <span><?php echo 'Submit'; ?></span>
+             </button>
+        </span>
+    </div>
+    <br>
+    <div class="others_day">
+        <div class="admin__page-section-item-content">
+            <table class="admin__table-secondary" border="1">
+                <tbody>
+                <tr>
+                    <td style="font-size: 13pt; font-weight: bold"><?php /* @escapeNotVerified */ echo __('Type') ?></td>
+                    <td style="font-size: 13pt; font-weight: bold"><?php /* @escapeNotVerified */ echo __('Success Request') ?></td>
+                    <td style="font-size: 13pt; font-weight: bold"><?php /* @escapeNotVerified */ echo __('Fail Request') ?></td>
+                </tr>
+                <tr>
+                    <td><?php /* @escapeNotVerified */ echo __('Customer') ?></td>
+                    <td id="customer_success">No request</td>
+                    <td id="customer_fail">No request</td>
+                </tr>
+                <tr>
+                    <td><?php /* @escapeNotVerified */
+                        echo __('Item') ?></td>
+                    <td id="item_success">No request</td>
+                    <td id="item_fail">No request</td>
+                </tr>
+                <tr>
+                    <td><?php /* @escapeNotVerified */
+                        echo __('Order') ?></td>
+                    <td id="salesreceipt_success">No request</td>
+                    <td id="salesreceipt_fail">No request</td>
+                </tr>
+                <tr>
+                    <td><?php /* @escapeNotVerified */
+                        echo __('Invoice') ?></td>
+                    <td id="invoice_success">No request</td>
+                    <td id="invoice_fail">No request</td>
+                </tr>
+                <tr>
+                    <td><?php /* @escapeNotVerified */
+                        echo __('All Type') ?></td>
+                    <td id="all_success">No request</td>
+                    <td id="all_fail">No request</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<script>
+    require([
+        "jquery",
+        "jquery/ui",
+        "mage/calendar"
+    ], function(){
+        'use strict';
+        jQuery("#date_range").dateRange({
+            buttonText:"<?php echo __('Select Date') ?>",
+            dateFormat: "dd-mm-yy",
+            from:{
+                id:"date_from"
+            },
+            to:{
+                id:"date_to"
+            }
+        });
+        var timeFrom = document.getElementById("date_from");
+        var timeTo = document.getElementById("date_to");
+        jQuery("#submit_date").click(function (){
+            var from = timeFrom.value;
+            var to = timeTo.value;
+            var DateData  = [from,to];
+            var sendData = JSON.stringify(DateData);
+            jQuery.ajax({
+                type: "POST",
+                url: '<?php echo $block->submitDate(); ?>',
+                data:"date" + sendData,
+                success: function(response)
+                {
+                    var data = JSON.parse(response);
+                    var array = ['Customer', 'Item', 'SalesReceipt', 'Invoice', 'All'];
+                    var i;
+                    for (i = 0; i < array.length; ++i) {
+                        var name = array[i];
+                        var success = 0;
+                        if (data[name]["success"] > 0) {
+                             success = data[name]["success"];
+                        } else {
+                             success = 'No request';
+                        }
+
+                        var fail = 0;
+                        if (data[name]["fail"] > 0) {
+                            fail = data[name]["fail"];
+                        } else {
+                            fail = 'No request';
+                        }
+
+                        var nameCheck = name.toLowerCase();
+                        var valueSuccess = document.getElementById(nameCheck+'_success');
+                        jQuery(valueSuccess).html(success);
+
+                        var valueFail= document.getElementById(nameCheck+'_fail');
+                        jQuery(valueFail).html(fail);
+                    }
+                },
+                showLoader: true
+            });
+        })
+
+    });
+</script>

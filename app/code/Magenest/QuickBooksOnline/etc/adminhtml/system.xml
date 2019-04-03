@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright  2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_QuickBooksOnline extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_QuickBooksOnline
+ * @author   Magenest JSC
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="200">
+            <label>Magenest</label>
+        </tab>
+        <section id="qbonline" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+            <class>separator-top</class>
+            <label>QuickBooks Online Config</label>
+            <tab>magenest</tab>
+            <resource>Magenest_QuickBooksOnline::config_qbonline</resource>
+            <group id="connection" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Connect with QuickBooks Online</label>
+                <fieldset_css>quickbook-online-connection-app</fieldset_css>
+                <field id="is_connected" translate="label" type="hidden" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Connection Status</label>
+                    <frontend_model>Magenest\QuickBooksOnline\Block\System\Config\Form\Connection</frontend_model>
+                </field>
+                <field id="app_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select Mode</label>
+                    <source_model>Magenest\QuickBooksOnline\Model\Config\Source\AppMode</source_model>
+                    <frontend_model>Magenest\QuickBooksOnline\Block\System\Config\Source\Mode</frontend_model>
+                </field>
+                <field id="test_client_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Client ID</label>
+                    <depends>
+                        <field id="app_mode">2</field>
+                    </depends>
+                </field>
+                <field id="test_client_secret" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Client Secret</label>
+                    <depends>
+                        <field id="app_mode">2</field>
+                    </depends>
+                    </field>
+                <field id="live_client_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Live Client ID</label>
+                    <depends>
+                        <field id="app_mode">1</field>
+                    </depends>
+                </field>
+                <field id="live_client_secret" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Live Client Secret</label>
+                    <depends>
+                        <field id="app_mode">1</field>
+                    </depends>
+                </field>
+                <field id="connect_button" translate="button_label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Magenest\QuickBooksOnline\Block\System\Config\Form\Button\Connection</frontend_model>
+                    <depends>
+                        <field id="is_connected">0</field>
+                    </depends>
+                </field>
+                <field id="information" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Company Information</label>
+                    <frontend_model>Magenest\QuickBooksOnline\Block\System\Config\Form\Information</frontend_model>
+                    <depends>
+                        <field id="is_connected">1</field>
+                    </depends>
+                </field>
+                <group id="account" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configure the Accounts Type in QuickBooks Online</label>
+                    <comment><![CDATA[
+                    The default QuickBooks Online account(s) value will be used .
+                    <br/>The extension will automatically create a new account.]]>
+                    </comment>
+                    <include path="Magenest_QuickBooksOnline::quickbook/settings_account.xml"/>
+                    <field id="sync_account" translate="button_label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <frontend_model>Magenest\QuickBooksOnline\Block\System\Config\Form\Button</frontend_model>
+                        <button_label>Sync All Accounts</button_label>
+                        <attribute type="button_url">qbonline/sync/account</attribute>
+                    </field>
+                </group>
+            </group>
+            <group id="synchronization" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Synchronization Settings</label>
+                <comment><![CDATA[Recommend: Should set cron jon mode for Sales Receipt, Invoice, Creditmemo.</br>
+                    You should read the setup cron job for your store at<a href="http://devdocs.magento.com/guides/v2.0/config-guide/cli/config-cli-subcommands-cron.html">here</a>
+                ]]></comment>
+                <include path="Magenest_QuickBooksOnline::quickbook/synchronization.xml"/>
+            </group>
+            <group id="prefix_sale" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Prefix Setting</label>
+                <field id="order" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Order</label>
+                </field>
+                <field id="creditmemos" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Credit Memos</label>
+                </field>
+            </group>
+            <group id="tax_shipping" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Tax Shipping with Country </label>
+                <field id="country" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Country</label>
+                    <source_model>Magenest\QuickBooksOnline\Model\Config\Source\Country</source_model>
+                </field>
+                <field id="tax_shipping" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Tax With Shipping</label>
+                    <source_model>Magenest\QuickBooksOnline\Model\Config\Source\TaxShipping</source_model>
+                    <depends>
+                        <field id="country">UK</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

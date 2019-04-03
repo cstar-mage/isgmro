@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="asset" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Asset Account Settings</label>
+        <field id="name" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Name</label>
+            <config_path>qbonline/account/asset_name</config_path>
+        </field>
+        <field id="id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Id</label>
+            <config_path>qbonline/account/asset_id</config_path>
+            <attribute type="readonly">readonly</attribute>
+        </field>
+    </group>
+    <group id="expense" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Expense Account Settings</label>
+        <field id="name" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Name</label>
+            <config_path>qbonline/account/expense_name</config_path>
+        </field>
+        <field id="id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Id</label>
+            <config_path>qbonline/account/expense_id</config_path>
+            <attribute type="readonly">readonly</attribute>
+        </field>
+    </group>
+    <group id="income" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Income Account Settings</label>
+        <field id="name" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Name</label>
+            <config_path>qbonline/account/income_name</config_path>
+        </field>
+        <field id="id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Id</label>
+            <config_path>qbonline/account/income_id</config_path>
+            <attribute type="readonly">readonly</attribute>
+        </field>
+    </group>
+</include>

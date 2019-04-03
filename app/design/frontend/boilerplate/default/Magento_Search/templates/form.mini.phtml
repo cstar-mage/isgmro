@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper('Magento\Search\Helper\Data');
+?>
+<div class="block block-search">
+    <form class="form minisearch" id="search_mini_form" action="<?php /* @escapeNotVerified */ echo $helper->getResultUrl() ?>" method="get">
+        <div class="form-group row">
+            <input id="search"
+                   data-mage-init='{"quickSearch":{
+                        "formSelector":"#search_mini_form",
+                        "url":"<?php /* @escapeNotVerified */ echo $block->getUrl('search/ajax/suggest', ['_secure' => $block->getRequest()->isSecure()]); ?>",
+                        "destinationSelector":"#search_autocomplete"}
+                   }'
+                   type="text"
+                   name="<?php /* @escapeNotVerified */ echo $helper->getQueryParamName() ?>"
+                   value="<?php /* @escapeNotVerified */ echo $helper->getEscapedQueryText() ?>"
+                   placeholder="<?php /* @escapeNotVerified */ echo __('Enter Keyword, Item, Model or Replacement Part Number...'); ?>"
+                   class="input-text col-10 col-sm-10 col-md-10 col-lg-10 form-control form-control"
+                   maxlength="<?php /* @escapeNotVerified */ echo $helper->getMaxQueryLength();?>"
+                   role="combobox"
+                   aria-haspopup="false"
+                   aria-autocomplete="both"
+                   autocomplete="off"/>
+            <div id="search_autocomplete" class="search-autocomplete"></div>
+            <?php //echo $block->getChildHtml() ?>
+            <button
+                type="submit"
+                class="col-2 col-sm-2 col-md-2 col-lg-2 form-control btn btn-secondary action search"
+                title="<?php echo $block->escapeHtml(__('Search')) ?>">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <?php /* @escapeNotVerified */ echo __('Search'); ?>
+            </button>
+        </div>
+    </form>
+</div>
+<?php echo $this->getChildHtml('mageworxWrapper');  ?>

@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var \Magenest\QuickBooksOnline\Block\System\Config\Form\Information $block
+ */
+    $userInfo = $block->getCompanyInfo();
+?>
+<div class="admin__page-section-item-content">
+    <table class="admin__table-secondary">
+        <tbody>
+            <?php foreach ($userInfo as $label => $value) :?>
+            <tr>
+                <th><?php /* @escapeNotVerified */ echo $block->escapeHtml($label) ?></th>
+                <th><?php /* @escapeNotVerified */ echo $block->escapeHtml($value) ?></th>
+            </tr>
+            <?php endforeach; ?>
+            <tr>
+                <th>
+                    <div class="actions button-container">
+                        <a href="<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getDisconnectUrl()) ?>">
+                            <button class="button action-configure"
+                                    type="button"
+                                    data-action="disconnect-app">
+                                <span><?php /* @escapeNotVerified */ echo __('Disconnect');?></span>
+                            </button>
+                        </a>
+                    </div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>

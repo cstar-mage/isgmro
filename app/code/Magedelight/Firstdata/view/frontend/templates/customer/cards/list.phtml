@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2016 Magedelight <info@magedelight.com>.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @category Magedelight
+ *
+ * @copyright Copyright (c) 2016 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+
+<?php 
+$cards = $block->getCustomerCards() ;
+$customHelper = $this->helper('Magedelight\Firstdata\Helper\Data');
+$firstDataIsEnabled = $customHelper->getConfig('payment/md_firstdata/active');
+if($firstDataIsEnabled == 1){
+?>
+<button type="button" title="<?php echo __("Add New Card") ?>" class="addcardbutton button action primary <?php if(count($cards) == 0 || count($cards) == null):?> addmargin<?php endif;?>" onclick="window.location='<?php echo $block->getAddCardUrl() ?>';"><span><span><?php echo __("Add New Card") ?></span></span></button>
+
+<?php if(count($cards) > 0): ?>
+<div class="table-wrapper">
+    <table class="data table cards" id="my-saved-cards-table">
+        <col />
+        <col />
+        <col width="5"/>
+        <thead>
+            <tr>
+                <th class="a-left view"><?php echo __('Card #') ?></th>
+                <th class="a-center view"><?php echo __('Card Info') ?></th>
+                <th class="a-right view"><?php echo __('Action') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <?php $_odd = ''; ?>
+            <?php foreach ($cards as $_card): ?>
+           
+                <tr>
+                    <td class="a-left view"><strong><?php echo "XXXX-". $_card['cc_last_4']?></strong></td>
+                    <td class="a-center view"><?php  echo $block->getAddressHtml($_card); ?></td>
+                    <td class="a-right view">
+                        <span class="nobr">
+                                <form method="post" name="form_edit_<?php echo $_card['card_id'] ?>" action="<?php echo $block->getPostUrl() ?>" style="display:inline-block;">
+                                    <input type="hidden" name="card_id" value="<?php echo $_card['card_id'] ?>" />
+                                    <button class="button action primary" name="profile_edit" value="edit" type="submit"><span><span><?php echo __("Edit") ?></span></span></button>
+                                </form>
+                                <span class="separator">&nbsp;|&nbsp;</span>
+                                <form onsubmit="return confirm('Are you sure want to delete credit card details?');" method="post" id="form_delete_<?php echo $_card['card_id'] ?>" name="form_delete_<?php echo $_card['card_id'] ?>" action="<?php echo $block->getDeleteAction() ?>" style="display:inline-block;">
+                                    <input type="hidden" name="card_id" value="<?php echo $_card['card_id'] ?>" />
+                                    <button class="button action primary" name="profile_delete" value="delete" type="submit"><span><span><?php echo __("Delete") ?></span></span></button>
+                                </form>
+                        </span>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+    <?php else: ?>
+    <div class="message info empty"><span><?php /* @escapeNotVerified */ echo __('You have no saved credit cards.') ?></span></div>
+    <?php endif; ?>
+<?php } ?>

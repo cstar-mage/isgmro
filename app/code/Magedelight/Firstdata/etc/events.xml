@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+   <event name="layout_render_before">
+       <observer name="magedelight_firstdata_check_util" instance="Magedelight\Firstdata\Observer\Util" />
+    </event>
+    <event name="admin_system_config_changed_section_magedelight_firstdata">
+        <observer name="custom_admin_system_config_changed_section_magedelight_firstdata" instance="Magedelight\Firstdata\Observer\Mdkc"/>
+        <observer name="magedelight_firstdata_frd_track" instance="Magedelight\Firstdata\Observer\Mdfrd" />
+    </event>
+    <event name="admin_system_config_changed_section_payment">
+        <observer name="custom_admin_system_config_changed_section_payment" instance="Magedelight\Firstdata\Observer\Mdkc"/>
+   </event>
+</config>

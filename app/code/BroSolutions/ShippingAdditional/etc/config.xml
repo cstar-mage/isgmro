@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <shippingadditional>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>BroSolutions\ShippingAdditional\Model\Carrier\ShippingAdditional</model>
+                <name>Ship on my account</name>
+                <price>0.00</price>
+                <title>Designate carrier and account number</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+            </shippingadditional>
+        </carriers>
+        <datepicker_config>
+            <general>
+                <enabled>1</enabled>
+            </general>
+        </datepicker_config>
+    </default>
+</config>

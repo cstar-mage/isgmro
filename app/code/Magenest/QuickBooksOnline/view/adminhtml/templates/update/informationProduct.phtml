@@ -1,0 +1,67 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: gialam
+ * Date: 27/03/2017
+ * Time: 19:42
+ */
+?>
+<?php $i = 0; ?>
+<?php foreach (unserialize($this->getFeedback()) as $info) : ?>
+    <?php $i++; ?>
+    <?php if ($info['Type'] == 'Inventory' || $info['Type'] == 'Non Inventory' || $info['Type'] == 'Service') {?>
+    <tr>
+        <td data-th="<?php echo $block->escapeHtml(__('STT')) ?>" class="col stt">
+            <span><?php echo $i; ?></span>
+        </td>
+        <td data-th="<?php echo $block->escapeHtml(__('ID Quickbook')) ?>" class="col id" >
+            <span>
+                <input type="text" name="product[<?php echo $i ?>][id_quickbook]" value="<?php echo $info['Id']; ?>"></td>
+        </span>
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Name')) ?>" class="col name" >
+            <span>
+                <input type="text" name="product[<?php echo $i ?>][name]"
+                       value="<?php if (isset($info['Name'])) {
+                            echo $info['Name'];
+} ?>">
+            </span>
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Type')) ?>" class="col type" >
+            <span>
+                <input type="text" name="product[<?php echo $i ?>][type]"
+                       value="<?php if (isset($info['Type'])) {
+                            echo $info['Type'];
+} ?>" disabled>
+            </span>
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Description')) ?>" class="col description">
+            <span>
+                <input type="text" name="product[<?php echo $i ?>][description]"
+                       value="<?php if (isset($info['Description'])) {
+                            echo $info['Description'];
+} ?>" >
+            </span>
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Price')) ?>" class="col price">
+            <span>
+                <input type="text" name="product[<?php echo $i ?>][price]"
+                       value="<?php if (isset($info['UnitPrice'])) {
+                            echo $info['UnitPrice'];
+}?>">
+            </span>
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Qty')) ?>" class="col qty">
+            <span>
+                <input type="text" name="product[<?php echo $i ?>][qty]"
+                       value="<?php if (isset($info['QtyOnHand'])) {
+                            echo $info['QtyOnHand'];
+}?>">
+            </span>
+        </td>
+        <td class="col action">
+            <input type="button" class="delete_row" value="Delete" >
+        </td>
+    </tr>
+    <?php } ?>
+<?php endforeach; ?>

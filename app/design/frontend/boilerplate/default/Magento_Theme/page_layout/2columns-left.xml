@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="1column"/>
+    <referenceContainer name="columns">
+        <container htmlTag="div" htmlClass="row">
+            <container name="div.sidebar.main" htmlTag="div" htmlClass="sidebar sidebar-main col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <container name="sidebar.main" as="sidebar_main" label="Sidebar Main"/>
+                <container name="sidebar.additional" as="sidebar_additional" label="Sidebar Additional"/>
+            </container>
+            <container name="main" label="Main Content Container" htmlTag="div" htmlClass="column main col-lg-9 col-md-9 col-sm-8 col-xs-12" after="div.sidebar.main"/>
+        </container>
+    </referenceContainer>
+</layout>

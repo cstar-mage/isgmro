@@ -1,0 +1,133 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: gialam
+ * Date: 27/03/2017
+ * Time: 19:42
+ */
+?>
+<?php $i = 0; ?>
+<?php foreach (unserialize($this->getFeedback()) as $info) : ?>
+    <?php $i++; ?>
+    <tr>
+        <td data-th="<?php echo $block->escapeHtml(__('STT')) ?>" class="col stt">
+            <span><?php echo $i; ?></span>
+        </td>
+        <td data-th="<?php echo $block->escapeHtml(__('ID Quickbook')) ?>" class="col id" >
+            <span>
+                <input type="text" name="customer[<?php echo $i ?>][id_quickbook]" value="<?php echo $info['Id']; ?>"></td>
+            </span>
+        </td>
+
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('First Name')) ?>" class="col first_name" >
+            <span>
+                <input type="text" name="customer[<?php echo $i ?>][first_name]" 
+                       value="<?php if (isset($info['GivenName'])) {
+                            echo $info['GivenName'];
+} ?>">
+            </span>
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Last Name')) ?>" class="col last_name" >
+            <span>
+                <input type="text" name="customer[<?php echo $i ?>][last_name]"
+                       value="<?php if (isset($info['FamilyName'])) {
+                            echo $info['FamilyName'];
+} ?>">
+            </span>
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Email')) ?>" class="col email" name="customer[<?php echo $i ?>][email]">
+            <span>
+                <input type="text" name="customer[<?php echo $i ?>][email]"
+                       value="<?php if (isset($info['PrimaryEmailAddr']['Address'])) {
+                            echo $info['PrimaryEmailAddr']['Address'];
+} ?>" >
+            </span>
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Phone')) ?>" class="col phone">
+            <span>
+                <input type="text" name="customer[<?php echo $i ?>][phone]"
+                       value="<?php if (isset($info['PrimaryPhone']['FreeFormNumber'])) {
+                            echo $info['PrimaryPhone']['FreeFormNumber'];
+} ?>">
+            </span>
+
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Billing')) ?>" class="col billing">
+            <span>
+                <b><?php echo __('Street: ') ?></b>
+                <input type="text" name="customer[<?php echo $i ?>][billing][street]"
+                       value="<?php if (isset($info['BillAddr']['Line1'])) {
+                            echo $info['BillAddr']['Line1'];
+} ?>">
+            </span><br>
+            <span>
+                <b><?php echo __('City: ') ?></b>
+                 <input type="text" name="customer[<?php echo $i ?>][billing][city]"
+                        value="<?php if (isset($info['BillAddr']['City'])) {
+                            echo $info['BillAddr']['City'];
+} ?>">
+            </span><br>
+            <span>
+                <b><?php echo __('Country: ') ?></b>
+                <input type="text" name="customer[<?php echo $i ?>][billing][country]"
+                       value="<?php if (isset($info['BillAddr']['Country'])) {
+                            echo $info['BillAddr']['Country'];
+} ?>">
+            </span><br>
+            <span>
+                <b><?php echo __('Region: ') ?></b>
+                <input type="text" name="customer[<?php echo $i ?>][billing][region]"
+                       value="<?php if (isset($info['BillAddr']['CountrySubDivisionCode'])) {
+                            echo $info['BillAddr']['CountrySubDivisionCode'];
+} ?>">
+            </span><br>
+            <span>
+                <b><?php echo __('Postcode: ') ?></b>
+                <input type="text" name="customer[<?php echo $i ?>][billing][postcode]"
+                       value="<?php if (isset($info['BillAddr']['PostalCode'])) {
+                            echo $info['BillAddr']['PostalCode'];
+} ?>">
+            </span>
+        </td>
+        <td data-th="<?php echo /* @escapeNotVerified */ $block->escapeHtml(__('Shipping')) ?>" class="col shipping">
+             <span>
+                <b><?php echo __('Street: ') ?></b>
+                <input type="text" name="customer[<?php echo $i ?>][shipping][street]"
+                       value="<?php if (isset($info['ShipAddr']['Line1'])) {
+                            echo $info['ShipAddr']['Line1'];
+} ?>">
+            </span><br>
+            <span>
+                <b><?php echo __('City: ') ?></b>
+                 <input type="text" name="customer[<?php echo $i ?>][shipping][city]"
+                        value="<?php if (isset($info['ShipAddr']['City'])) {
+                            echo $info['ShipAddr']['City'];
+} ?>">
+            </span><br>
+            <span>
+                <b><?php echo __('Country: ') ?></b>
+                <input type="text" name="customer[<?php echo $i ?>][shipping][country]"
+                       value="<?php if (isset($info['ShipAddr']['Country'])) {
+                            echo $info['ShipAddr']['Country'];
+} ?>">
+            </span><br>
+            <span>
+                <b><?php echo __('Region: ') ?></b>
+                <input type="text" name="customer[<?php echo $i ?>][shipping][region]"
+                       value="<?php if (isset($info['ShipAddr']['CountrySubDivisionCode'])) {
+                            echo $info['ShipAddr']['CountrySubDivisionCode'];
+} ?>">
+            </span><br>
+            <span>
+                <b><?php echo __('Postcode: ') ?></b>
+                <input type="text" name="customer[<?php echo $i ?>][shipping][postcode]"
+                       value="<?php if (isset($info['ShipAddr']['PostalCode'])) {
+                            echo $info['ShipAddr']['PostalCode'];
+} ?>">
+            </span>
+        </td>
+        <td class="col action">
+            <input type="button" class="delete_row" value="Delete" >
+        </td>
+    </tr>
+<?php endforeach; ?>

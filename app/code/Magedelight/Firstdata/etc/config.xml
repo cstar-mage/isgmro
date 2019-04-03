@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <md_firstdata>
+                <active>0</active>
+                <title>Firstdata By MageDelight</title>
+                <order_status>processing</order_status>
+                <test>1</test>
+                <debug>1</debug>
+                <cctypes>AE,VI,MC,DI</cctypes>
+                <save_optional>1</save_optional>
+                <soap_gateway_url>https://api.globalgatewaye4.firstdata.com/transaction/v19/wsdl</soap_gateway_url>
+                <test_soap_gateway_url>https://api.demo.globalgatewaye4.firstdata.com/transaction/v19/wsdl</test_soap_gateway_url>
+                <model>Magedelight\Firstdata\Model\Payment</model>
+            </md_firstdata>
+        </payment>
+    </default>
+</config>

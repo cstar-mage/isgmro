@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="\Magento\Sales\Block\Adminhtml\Order\Create\Shipping\Method\Form" type="BroSolutions\ShippingAdditional\Block\Adminhtml\Order\Create\Shipping\Method\Form" />
+    <preference for="\Magento\Sales\Controller\Adminhtml\Order\Create\Save" type="BroSolutions\ShippingAdditional\Controller\Adminhtml\Order\Create\Save" />
+    <preference for="\Magento\Sales\Model\AdminOrder\Create" type="BroSolutions\ShippingAdditional\Model\AdminOrder\Create" />
+</config>

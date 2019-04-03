@@ -1,0 +1,24 @@
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct()
+?>
+<?php if ($_additional = $block->getAdditionalData()): ?>
+    <div class="additional-attributes-wrapper table-wrapper">
+        <table class="data table additional-attributes" id="product-attribute-specs-table">
+            <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('More Information') ?></caption>
+            <tbody>
+            <?php foreach ($_additional as $_data): ?>
+                <?php if ($_helper->productAttribute($_product, $_data['value'], $_data['code']) !== 'N/A'): ?>
+                    <?php $outputValue = $_helper->productAttribute($_product, $_data['value'], $_data['code']); ?>
+                    <?php $outputValue = trim($outputValue); $outputValue = strtolower($outputValue); ?>
+                    <?php if($outputValue == 'no' || $outputValue == 'n/a'): continue; endif; ?>
+                    <tr>
+                        <th class="col label" scope="row"><?php echo $block->escapeHtml(__($_data['label'])) ?></th>
+                        <td class="col data" data-th="<?php echo $block->escapeHtml(__($_data['label'])) ?>"><?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></td>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif;?>

@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="customer" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Customers</label>
+        <field id="enabled" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Enable</label>
+            <config_path>qbonline/customer/enabled</config_path>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <tooltip><![CDATA[Synchronize to Customer when:
+                    <ol><li>Customer edit address information</li>
+                    <li>Customer register success</li>
+                    <li>Admin edit a customer</li>
+                    </ol>]]></tooltip>
+        </field>
+        <field id="sync_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sync Mode</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\SyncMode</source_model>
+            <config_path>qbonline/customer/sync_mode</config_path>
+            <depends>
+                <field id="enabled">1</field>
+            </depends>
+            <validate>required-entry</validate>
+        </field>
+        <field id="cron_time" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Time</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\CronTime</source_model>
+            <config_path>qbonline/customer/cron_time</config_path>
+            <depends>
+                <field id="sync_mode">1</field>
+                <field id="enabled">1</field>
+            </depends>
+            <validate>required-entry</validate>
+        </field>
+    </group>
+    <group id="item" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Products(Items)</label>
+        <field id="enabled" translate="label comment" type="select" sortOrder="5" showInDefault="1"
+               showInWebsite="1" showInStore="1">
+            <label>Enable</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>qbonline/item/enabled</config_path>
+            <tooltip><![CDATA[Synchronize to Products and Services when:
+                    <ol><li>Customer edit address information</li>
+                    <li>Customer place order</li>
+                    <li>Admin create an order</li>
+                    <li>Admin save a product</li>
+                    </ol>]]></tooltip>
+        </field>
+        <field id="sync_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sync Mode</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\SyncMode</source_model>
+            <config_path>qbonline/item/sync_mode</config_path>
+            <depends>
+                <field id="enabled">1</field>
+            </depends>
+            <validate>required-entry</validate>
+        </field>
+        <field id="cron_time" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Time</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\CronTime</source_model>
+            <config_path>qbonline/item/cron_time</config_path>
+            <depends>
+                <field id="sync_mode">1</field>
+                <field id="enabled">1</field>
+            </depends>
+            <validate>required-entry</validate>
+        </field>
+    </group>
+    <group id="order" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Order</label>
+        <field id="enabled" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Enable</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>qbonline/order/enabled</config_path>
+            <tooltip><![CDATA[Synchronize to SalesReceipt when:
+                    <ol>
+                    <li>Customer place order</li>
+                    <li>Admin create an order</li>
+                    </ol>]]></tooltip>
+        </field>
+        <field id="sync_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sync Mode</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\SyncMode</source_model>
+            <config_path>qbonline/order/sync_mode</config_path>
+            <validate>required-entry</validate>
+            <depends>
+                <field id="enabled">1</field>
+            </depends>
+        </field>
+        <field id="cron_time" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Time</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\CronTime</source_model>
+            <config_path>qbonline/order/cron_time</config_path>
+            <depends>
+                <field id="sync_mode">1</field>
+                <field id="enabled">1</field>
+            </depends>
+            <validate>required-entry</validate>
+        </field>
+    </group>
+    <group id="invoice" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Invoices</label>
+        <field id="enabled" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Enable</label>
+            <config_path>qbonline/invoice/enabled</config_path>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <tooltip><![CDATA[Synchronize to Invoice when:
+                    <ol>
+                    <li>An invoice created</li>
+                    </ol>]]></tooltip>
+        </field>
+        <field id="sync_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sync Mode</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\SyncMode</source_model>
+            <config_path>qbonline/invoice/sync_mode</config_path>
+            <validate>required-entry</validate>
+            <depends>
+                <field id="enabled">1</field>
+            </depends>
+        </field>
+        <field id="cron_time" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Time</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\CronTime</source_model>
+            <config_path>qbonline/invoice/cron_time</config_path>
+            <depends>
+                <field id="sync_mode">1</field>
+                <field id="enabled">1</field>
+            </depends>
+            <validate>required-entry</validate>
+        </field>
+    </group>
+    <group id="creditmemo" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Credit Memos</label>
+        <field id="enabled" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Enable</label>
+            <config_path>qbonline/creditmemo/enabled</config_path>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <tooltip><![CDATA[Synchronize to Credit Memos when:
+                    <ol>
+                    <li>An order cancel</li>
+                    </ol>]]></tooltip>
+        </field>
+        <field id="sync_mode" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sync Mode</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\SyncMode</source_model>
+            <config_path>qbonline/creditmemo/sync_mode</config_path>
+            <validate>required-entry</validate>
+            <depends>
+                <field id="enabled">1</field>
+            </depends>
+        </field>
+        <field id="cron_time" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Time</label>
+            <source_model>Magenest\QuickBooksOnline\Model\Config\Source\CronTime</source_model>
+            <config_path>qbonline/creditmemo/cron_time</config_path>
+            <depends>
+                <field id="sync_mode">1</field>
+                <field id="enabled">1</field>
+            </depends>
+            <validate>required-entry</validate>
+        </field>
+    </group>
+</include>

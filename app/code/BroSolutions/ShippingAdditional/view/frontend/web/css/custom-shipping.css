@@ -1,0 +1,9 @@
+#checkout-step-shipping_method #onepage-checkout-shipping-method-additional-load{
+    max-width: 500px;
+}
+#checkout-step-shipping_method #onepage-checkout-shipping-method-additional-load .input-box{
+    padding-bottom: 20px;
+}
+#checkout-step-shipping_method #onepage-checkout-shipping-method-additional-load h3{
+    margin-top: 0;
+}

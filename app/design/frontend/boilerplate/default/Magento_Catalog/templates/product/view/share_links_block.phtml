@@ -1,0 +1,29 @@
+<?php
+/**
+ * Product share links on view template
+ *
+ * @see \Magento\Catalog\Block\Product\View
+ */
+$_product = $block->getProduct();
+?>
+
+<div class="share-links-block">
+    <div class="share-title">Share This Product</div>
+    <ul class="sharing-links">
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($_product->getProductUrl());?>&t=<?php echo urlencode($_product->getName())?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on FaceBook">
+                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li>
+            <a href="http://twitter.com/home/?status=<?php echo urlencode($_product->getProductUrl());?>(<?php echo urlencode($_product->getName())?>)" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Twitter">
+                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://pinterest.com/pin/create/link/?url=<?php echo urlencode($_product->getProductUrl());?>(<?php echo urlencode($_product->getName())?>)" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'" title="">
+                <i class="fa fa-pinterest-square" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>

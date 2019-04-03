@@ -1,0 +1,172 @@
+.md-firstdata-cards-list{
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 360px;
+}
+.md-firstdata-cards-list .md-firstdata-cards-list-item{
+    background: #f1f1f1;
+    border: 1px solid #d9d2ca;
+    cursor: pointer;
+    margin-bottom: -1px;
+    padding: 10px 10px 15px;
+    position: relative;
+    z-index: 1;
+}
+.md-firstdata-cards-list .md-firstdata-cards-list-item.ui-state-active:before{
+    color: #d9d2ca !important;
+    right: -11px !important;
+    z-index: 1 !important;
+}
+.md-firstdata-cards-list .md-firstdata-cards-list-item.ui-state-active{
+    background: #fff;
+    box-shadow: 0 1px 1px 0 #d9d2ca;
+    margin-left: -2px;
+    padding-left: 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.md-firstdata-cards-list .md-firstdata-cards-list-item.ui-state-active:after{
+    color: #fff;
+    content: "\e02a";
+    font-family: 'MUI-Icons';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 11px;
+    margin-top: -5px;
+    position: absolute;
+    right: -9px;
+    speak: none;
+    text-indent: -6px;
+    top: 50%;
+    width: 10px;
+    z-index: 2;
+}
+.md-firstdata-cards-list .md-firstdata-cards-list-item .md-firstdata-cards-list-item-actions{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+.md-firstdata-cards-list .action-delete{
+    background-image: none;
+    background: none;
+    -moz-box-sizing: content-box;
+    border: 0;
+    box-shadow: none;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+    font-weight: 400;
+    display: inline-block;
+    text-decoration: none;
+}
+.md-firstdata-cards-list .action-delete span, .md-firstdata-cards-list .action-edit span{
+    max-height: 1px;
+    max-width: 1px;
+}
+.md-firstdata-cards-list .action-delete:after{
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.6rem;
+    line-height: 16px;
+    color: #41362f;
+    content: '\e620';
+    font-family: 'Admin Icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+.md-firstdata-cards-list .action-edit{
+    background: none;
+    border:none;
+    height: 1px;
+}
+.md-firstdata-cards-list .action-edit:after{
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.6rem;
+    line-height: 16px;
+    color: #666;
+    content: '\e631';
+    font-family: 'Admin Icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+.md-firstdata-cards-item-edit-content{
+    background: #fff;
+    border: 1px solid #dad1c8;
+    box-shadow: 0 2px 1px 0 rgba(217,210,202,0.5);
+    margin-left: 359px;
+    max-width: 500px;
+    padding: 15px 30px;
+}
+.md-firstdata-cards-list .md-firstdata-cards-actions{
+    background: none;
+    border: 0;
+    box-shadow: none;
+    cursor: default;
+    padding: 20px 0 0;
+}
+
+.md-ajax-loading{
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    background: url('../../Magedelight_Firstdata/images/loader-1.gif') no-repeat center;
+    z-index: 4;
+    height: 64px;
+    width: 64px;
+    opacity: 0.5;
+}
+.md-firstdata-cards-item-edit-content .admin__field:not(.admin__field-option) > .admin__field-label span{
+    display: block;
+}
+.md-firstdata-cards-list-item-actions button
+{
+    min-height: 20px;
+}
+.state-required span.required {
+  color: #eb5202;
+  content: "*";
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1;
+  top: 1.2rem;
+  z-index: 1;
+}
+.state-required span ~ span
+{
+    margin-left: 6px;
+    display: inline !important;
+}
+.state-required label
+{
+    font-weight: 600;
+    margin: 0 0 8px 30px;
+}
+#md-firstdata-cards-list-container .validation-advice {
+  background: #fffbbb none repeat scroll 0 0;
+  border: 1px solid #ee7d7d;
+  box-sizing: border-box;
+  color: #555;
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0.2rem 0 0;
+  padding: 0.8rem 1rem 0.9rem;
+}
+#md-firstdata-cards-list-container .state-required select:disabled ~ .validation-advice
+{
+    display: none;
+}

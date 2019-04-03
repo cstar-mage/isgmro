@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/animate.css" />
+        <css src="css/bootstrap.min.css" />
+        <css src="css/docs.min.css" />
+        <css src="css/font-awesome.min.css" />
+        <css src="css/ie10-viewport-bug-workaround.css" />
+        <css src="css/style.css" />
+        <remove src="css/styles-m.css" />
+        <remove src="css/styles-l.css" />
+        <!--
+        <link src="Magento_Theme::favicon-16x16.png" rel="icon" sizes="32x32" />
+        <link src="Magento_Theme::favicon-32x32.png" rel="icon" sizes="32x32" />
+        -->
+    </head>
+</page>

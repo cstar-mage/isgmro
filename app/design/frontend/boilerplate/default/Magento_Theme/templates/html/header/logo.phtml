@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+?>
+<?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
+<!--span data-action="toggle-nav" class="action nav-toggle"><span><?php /* @escapeNotVerified */ //echo __('Toggle Nav') ?></span></span-->
+<?php if ($block->isHomePage()):?>
+    <strong class="logo">
+<?php else: ?>
+    <a class="logo" href="<?php echo $block->getUrl(''); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
+<?php endif ?>
+        <img class="img-fluid" src="<?php /* @escapeNotVerified */ echo $block->getLogoSrc() ?>"
+             alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"
+             <?php echo $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+             <?php echo $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+        />
+<?php if ($block->isHomePage()):?>
+    </strong>
+<?php else:?>
+    </a>
+<?php endif?>
+<?php
+    $obm = \Magento\Framework\App\ObjectManager::getInstance();
+    /** @var \Magento\Framework\App\Http\Context $context */
+    $context = $obm->get('Magento\Framework\App\Http\Context');
+    /** @var bool $isLoggedIn */
+    $isLoggedIn = $context->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+?>
+<?php if($isLoggedIn): ?>
+    <script type="text/javascript">
+        require([
+          "jquery"
+        ],
+        function($) {
+          $('.is-logged-in').show();
+        });
+    </script>
+<?php else: ?>
+    <script type="text/javascript">
+        require([
+          "jquery"
+        ],
+        function($) {
+          $('.not-logged-in').show();
+        });
+    </script>
+<?php endif; ?>

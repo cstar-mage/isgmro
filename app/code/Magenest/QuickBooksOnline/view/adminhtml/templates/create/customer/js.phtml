@@ -1,0 +1,108 @@
+<?php /** @var $block  \Magenest\QuickBooksOnline\Block\Adminhtml\Create\Customer\Edit\Js */ ?>
+<?php
+$_data = $block->useAddress();
+$useBilling = $_data['billing'];
+$useBilling = $_data['shipping'];
+?>
+<script>
+    require([
+        "jquery"
+    ], function ($) {
+        var useBilling = <?php echo $_data['billing'] ?>;
+        var useShipping = <?php echo $_data['shipping'] ?>;
+        if (useBilling == 0) {
+            $("#billing_prefix").prop('disabled', true);
+            $("#billing_firstname").prop('disabled', true);
+            $("#billing_middlename").prop('disabled', true);
+            $("#billing_lastname").prop('disabled', true);
+            $("#billing_suffix").prop('disabled', true);
+            $("#billing_street").prop('disabled', true);
+            $("#billing_city").prop('disabled', true);
+            $("#billing_country_id").prop('disabled', true);
+            $("#billing_region_id").prop('disabled', true);
+            $("#billing_postcode").prop('disabled', true);
+            $("#billing_telephone").prop('disabled', true);
+            $("#billing_vat_id").prop('disabled', true);
+        }
+        if (useShipping == 0) {
+            $("#shipping_prefix").prop('disabled', true);
+            $("#shipping_firstname").prop('disabled', true);
+            $("#shipping_middlename").prop('disabled', true);
+            $("#shipping_lastname").prop('disabled', true);
+            $("#shipping_suffix").prop('disabled', true);
+            $("#shipping_street").prop('disabled', true);
+            $("#shipping_city").prop('disabled', true);
+            $("#shipping_country_id").prop('disabled', true);
+            $("#shipping_region_id").prop('disabled', true);
+            $("#shipping_postcode").prop('disabled', true);
+            $("#shipping_telephone").prop('disabled', true);
+            $("#shipping_vat_id").prop('disabled', true);
+        }
+
+
+        $("#billing_enabled").on('change', function() {
+            var select = $(this).val();
+            if (select == 0) {
+                $("#billing_prefix").prop('disabled', true);
+                $("#billing_firstname").prop('disabled', true);
+                $("#billing_middlename").prop('disabled', true);
+                $("#billing_lastname").prop('disabled', true);
+                $("#billing_suffix").prop('disabled', true);
+                $("#billing_street").prop('disabled', true);
+                $("#billing_city").prop('disabled', true);
+                $("#billing_country_id").prop('disabled', true);
+                $("#billing_region_id").prop('disabled', true);
+                $("#billing_postcode").prop('disabled', true);
+                $("#billing_telephone").prop('disabled', true);
+                $("#billing_vat_id").prop('disabled', true);
+            }
+            if (select == 1) {
+                $("#billing_prefix").prop('disabled', false);
+                $("#billing_firstname").prop('disabled', false);
+                $("#billing_middlename").prop('disabled', false);
+                $("#billing_lastname").prop('disabled', false);
+                $("#billing_suffix").prop('disabled', false);
+                $("#billing_street").prop('disabled', false);
+                $("#billing_city").prop('disabled', false);
+                $("#billing_country_id").prop('disabled', false);
+                $("#billing_region_id").prop('disabled', false);
+                $("#billing_postcode").prop('disabled', false);
+                $("#billing_telephone").prop('disabled', false);
+                $("#billing_vat_id").prop('disabled', false);
+            }
+        });
+
+        $("#shipping_enabled").on('change', function() {
+            var select = $(this).val();
+            if (select == 0) {
+                $("#shipping_prefix").prop('disabled', true);
+                $("#shipping_firstname").prop('disabled', true);
+                $("#shipping_middlename").prop('disabled', true);
+                $("#shipping_lastname").prop('disabled', true);
+                $("#shipping_suffix").prop('disabled', true);
+                $("#shipping_street").prop('disabled', true);
+                $("#shipping_city").prop('disabled', true);
+                $("#shipping_country_id").prop('disabled', true);
+                $("#shipping_region_id").prop('disabled', true);
+                $("#shipping_postcode").prop('disabled', true);
+                $("#shipping_telephone").prop('disabled', true);
+                $("#shipping_vat_id").prop('disabled', true);
+            }
+            if (select == 1) {
+                $("#shipping_prefix").prop('disabled', false);
+                $("#shipping_firstname").prop('disabled', false);
+                $("#shipping_middlename").prop('disabled', false);
+                $("#shipping_lastname").prop('disabled', false);
+                $("#shipping_suffix").prop('disabled', false);
+                $("#shipping_street").prop('disabled', false);
+                $("#shipping_city").prop('disabled', false);
+                $("#shipping_country_id").prop('disabled', false);
+                $("#shipping_region_id").prop('disabled', false);
+                $("#shipping_postcode").prop('disabled', false);
+                $("#shipping_telephone").prop('disabled', false);
+                $("#shipping_vat_id").prop('disabled', false);
+            }
+        });
+
+    });
+</script>

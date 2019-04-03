@@ -1,0 +1,161 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \BroSolutions\ShippingAdditional\Block\Adminhtml\Order\Create\Shipping\Method\Form */ ?>
+<?php
+$configProvider = $block->getConfigProvider();
+$config = $configProvider->getConfig();
+$dropDownConfig = isset($config['dropdown_config']) ? $config['dropdown_config'] : false;
+?>
+<?php $_shippingRateGroups = $block->getShippingRates(); ?>
+<?php if ($_shippingRateGroups): ?>
+    <table id="order-shipping-method-choose" class="control" style="display:none">
+        <dl class="admin__order-shipment-methods">
+            <?php foreach ($_shippingRateGroups as $code => $_rates): ?>
+                <dt class="admin__order-shipment-methods-title"><?= $block->escapeHtml($block->getCarrierName($code)) ?></dt>
+                <dd class="admin__order-shipment-methods-options">
+                    <ul class="admin__order-shipment-methods-options-list">
+                        <?php foreach ($_rates as $_rate):  ?>
+                            <?php $carrier = $_rate->getCarrier(); ?>
+                            <?php $_radioProperty = 'name="order[shipping_method]" type="radio" onclick="order.setShippingMethod(this.value)"' ?>
+                            <?php $_code = $_rate->getCode() ?>
+                            <li class="admin__field-option">
+                                <?php if ($_rate->getErrorMessage()): ?>
+                                    <div class="messages">
+                                        <div class="message message-error error">
+                                            <div><?= $block->escapeHtml($_rate->getErrorMessage()) ?></div>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <?php $_checked = $block->isMethodActive($_code) ? 'checked="checked"' : '' ?>
+                                    <input <?= /* @escapeNotVerified */ $_radioProperty ?> value="<?= /* @escapeNotVerified */ $_code ?>"
+                                                                                           id="s_method_<?= /* @escapeNotVerified */ $_code ?>" <?= /* @escapeNotVerified */ $_checked ?>
+                                                                                           class="admin__control-radio required-entry"/>
+                                    <label class="admin__field-label" for="s_method_<?= /* @escapeNotVerified */ $_code ?>">
+                                        <?= $block->escapeHtml($_rate->getMethodTitle() ? $_rate->getMethodTitle() : $_rate->getMethodDescription()) ?> -
+                                        <strong>
+                                            <?php $_excl = $block->getShippingPrice($_rate->getPrice(), $this->helper('Magento\Tax\Helper\Data')->displayShippingPriceIncludingTax()); ?>
+                                            <?php $_incl = $block->getShippingPrice($_rate->getPrice(), true); ?>
+
+                                            <?= /* @escapeNotVerified */ $_excl ?>
+                                            <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                                                (<?= /* @escapeNotVerified */ __('Incl. Tax') ?> <?= /* @escapeNotVerified */ $_incl ?>)
+                                            <?php endif; ?>
+                                        </strong>
+                                    </label>
+                                    <?php if($carrier == 'shippingadditional' && $dropDownConfig): ?>
+                                    <table id="shipping-additional-options-table" style="width:100%; ">
+                                        <tr>
+                                            <td style="width:50%; padding:5px 0;">Shipping Carrier & Shipping Method</td>
+                                            <td style="width:50%; padding:5px 0;">
+                                                <select id="ship_carrier_ship_method" name="ship_carrier_ship_method"
+                                                        title="Shipping Carrier & Shipping Method"  class="required validate-select "
+                                                        required="true">
+                                                    <?php foreach($dropDownConfig as $value => $label): ?>
+                                                        <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:50%; padding:5px 0;">
+                                                Account Number
+                                            </td>
+                                            <td style="width:50%; padding:5px 0;">
+                                                <input name="account_number" id="account_number" title="Account Number"
+                                                       type="text"
+                                                       class="" >
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <?php endif; ?>
+                                <?php endif ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </dd>
+            <?php endforeach; ?>
+        </dl>
+    </div>
+    <?php if ($_rate = $block->getActiveMethodRate()): ?>
+        <div id="order-shipping-method-info" class="order-shipping-method-info">
+            <dl class="admin__order-shipment-methods">
+                <dt class="admin__order-shipment-methods-title">
+                    <?= $block->escapeHtml($block->getCarrierName($_rate->getCarrier())) ?>
+                </dt>
+                <dd class="admin__order-shipment-methods-options">
+                    <?= $block->escapeHtml($_rate->getMethodTitle() ? $_rate->getMethodTitle() : $_rate->getMethodDescription()) ?> -
+                    <strong>
+                        <?php $_excl = $block->getShippingPrice($_rate->getPrice(), $this->helper('Magento\Tax\Helper\Data')->displayShippingPriceIncludingTax()); ?>
+                        <?php $_incl = $block->getShippingPrice($_rate->getPrice(), true); ?>
+
+                        <?= /* @escapeNotVerified */ $_excl ?>
+                        <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                            (<?= /* @escapeNotVerified */ __('Incl. Tax') ?> <?= /* @escapeNotVerified */ $_incl ?>)
+                        <?php endif; ?>
+                    </strong>
+                </dd>
+            </dl>
+            <a href="#"
+               onclick="$('order-shipping-method-info').hide();$('order-shipping-method-choose').show();return false"
+               class="action-default">
+                <span><?= /* @escapeNotVerified */ __('Click to change shipping method') ?></span>
+            </a>
+        </div>
+    <?php else: ?>
+        <script>
+            require(['prototype'], function(){
+                $('order-shipping-method-choose').show();
+            });
+        </script>
+    <?php endif; ?>
+<?php elseif ($block->getIsRateRequest()): ?>
+    <div class="order-shipping-method-summary">
+        <strong class="order-shipping-method-not-available"><?= /* @escapeNotVerified */ __('Sorry, no quotes are available for this order.') ?></strong>
+    </div>
+<?php else: ?>
+    <div id="order-shipping-method-summary" class="order-shipping-method-summary">
+        <a href="#" onclick="order.loadShippingRates();return false" class="action-default">
+            <span><?= /* @escapeNotVerified */ __('Get shipping methods and rates') ?></span>
+        </a>
+        <input type="hidden" name="order[has_shipping]" value="" class="required-entry" />
+    </div>
+<?php endif; ?>
+<div style="display: none;" id="shipping-method-overlay" class="order-methods-overlay">
+    <span><?= /* @escapeNotVerified */ __('You don\'t need to select a shipping method.') ?></span>
+</div>
+<script>
+    require(["Magento_Sales/order/create/form"], function(){
+
+        order.overlay('shipping-method-overlay', <?php if ($block->getQuote()->isVirtual()): ?>false<?php else: ?>true<?php endif; ?>);
+        order.overlay('address-shipping-overlay', <?php if ($block->getQuote()->isVirtual()): ?>false<?php else: ?>true<?php endif; ?>);
+
+        <?php if ($block->getQuote()->isVirtual()): ?>
+        order.isOnlyVirtualProduct = true;
+        <?php endif; ?>
+    });
+    require([
+        'jquery',
+        'mage/mage'
+    ], function($){
+        showHideAdditionalOptions();
+        jQuery('input[name="order[shipping_method]"]').change(function(){
+            showHideAdditionalOptions();
+        });
+        function showHideAdditionalOptions()
+        {
+            if(jQuery('#s_method_shippingadditional_shippingadditional').is(':checked')){
+                jQuery('#shipping-additional-options-table').show();
+            } else {
+                jQuery('#shipping-additional-options-table').hide();
+            }
+        }
+    });
+</script>

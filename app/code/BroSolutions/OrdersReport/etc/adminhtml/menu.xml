@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="BroSolutions_OrdersReport::brosolutionsordersreport" title="Export Orders" module="BroSolutions_OrdersReport" sortOrder="51"
+             action="brosolutionsordersreport/reportform"
+             parent="Magento_Sales::sales"
+             resource="Magento_Backend::content"/>
+    </menu>
+</config>

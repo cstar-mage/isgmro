@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\OfflineShipping\Model\Carrier\Flatrate" type="BroSolutions\Isgmro\Model\Carrier\Flatrate" />
+    <!--preference for="Magento\Checkout\Block\Cart\Sidebar" type="BroSolutions\Isgmro\Block\Cart\Sidebar" /-->
+    <type name="Amasty\Shopby\Helper\OptionSetting">
+        <plugin name="amasty_fix_empty_attr_code" type="BroSolutions\Isgmro\Plugin\Amasty\Heleprplugin" sortOrder="5" />
+    </type>
+    <type name="Magento\Catalog\Ui\Component\Listing\Columns\ProductActions">
+        <plugin name="select_default_frontend_store_view" type="BroSolutions\Isgmro\Plugin\Adminhtml\Productgrid\Colunm\Actionsplugin" sortOrder="1" />
+    </type>
+    <preference for="Magento\Checkout\Model\Cart" type="BroSolutions\Isgmro\Model\Checkout\Cart" />
+
+</config>

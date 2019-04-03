@@ -1,0 +1,252 @@
+<?php
+/**  \Magenest\QuickBooksOnline\Block\Adminhtml\Create\SalesReceipt\View $block*/
+$dataOrder = $block->getOrderData();
+$dataProduct = $block->getProductData();
+$customer = $block->getCustomerInformation();
+$address = $block->getAddress();
+$currencySymbol = $block->getCurrencySymbol();
+?>
+
+<div class="entry-edit order-view" id="sales_order_view"><div id="sales_order_view_tabs_order_info_content" style="" data-ui-id="sales-order-tabs-tab-content-order-info" aria-labelledby="sales_order_view_tabs_order_info" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
+        <div id="order-messages">
+        </div>
+        <section class="admin__page-section order-view-account-information">
+            <div class="admin__page-section-title">
+                <span class="title"><?php echo __('Order &amp; Account Information') ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div class="admin__page-section-item order-information">
+                    <div class="admin__page-section-item-title">
+                <span class="title"><?php echo __('DocNumber # ').$dataOrder->getDocNumber(); ?>
+                    </div>
+                    <div class="admin__page-section-item-content">
+                        <table class="admin__table-secondary order-information-table">
+                            <tbody>
+                            <tr>
+                                <th><?php echo __('Order Date') ?></th>
+                                <td><?php echo $dataOrder->getCreatedAt(); ?></td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Customer Name') ?></th>
+                                <td>
+                                    <a href="<?php echo $block->getUrlCustomer(); ?>" target="_blank">
+                                        <span><?php echo $customer->getFirstname().' '.$customer->getLastname() ?></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Email') ?></th>
+                                <td><span><?php echo $customer->getEmail() ?></span></td>
+                            </tr>
+                            <tr>
+                                <th>Customer Group</th>
+                                <td>General</td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="admin__page-section order-addresses">
+            <div class="admin__page-section-title">
+                <span class="title">Address Information</span>
+            </div>
+            <div class="admin__page-section-content">
+                <div class="admin__page-section-item order-billing-address">
+                    <div class="admin__page-section-item-title">
+                        <span class="title">Billing Address</span>
+                    </div>
+                    <address class="admin__page-section-item-content">
+                        <?php if (isset($address['billing'])) {?>
+                        <span>
+                            <input type="text" value="<?php echo $address['billing']['id'] ?>" hidden>
+                        </span><br>
+                        <span>
+                            <input type="text" value="<?php echo $address['billing']['name'] ?>" placeholder="name">
+                        </span><br>
+                        <span>
+                            <input type="text" value="<?php echo $address['billing']['company'] ?>" placeholder="company">
+                        </span><br>
+                        <span>
+                            <input type="text" value="<?php echo $address['billing']['street'] ?>" placeholder="street">
+                        </span><br>
+                        <span>
+                            <input type="text" value=" <?php echo $address['billing']['city'] ?>" placeholder="city">
+                        </span><br>
+                        <span>
+                            <input type="text" value="<?php echo $address['billing']['country'] ?>" placeholder="country">
+                        </span><br>
+                        <span>
+                            <input type="text" value="<?php echo $address['billing']['region'] ?>" placeholder="region">
+                        </span><br>
+                        <span>
+                            <input type="text" value=" <?php echo $address['billing']['postcode'] ?>" placeholder="postcode">
+                        </span><br>
+                        <?php } else { ?>
+                        <span>
+                            <?php echo __('no data') ?>
+                        </span>
+                        <?php } ?>
+                    </address>
+                </div>
+                <div class="admin__page-section-item order-shipping-address">
+                    <div class="admin__page-section-item-title">
+                        <span class="title">Shipping Address</span>
+                    </div>
+                    <address class="admin__page-section-item-content">
+                        <?php if (isset($address['shipping'])) {?>
+                        <span>
+                            <input type="text" value="<?php echo $address['shipping']['id'] ?>" hidden>
+                        </span><br>
+                        <span>
+                            <input type="text" value="<?php echo $address['shipping']['name'] ?>" placeholder="name">
+                        </span><br>
+                            <span>
+                            <input type="text" value="<?php echo $address['shipping']['company'] ?>" placeholder="company">
+                        </span><br>
+                            <span>
+                            <input type="text" value="<?php echo $address['shipping']['street'] ?>" placeholder="street">
+                        </span><br>
+                            <span>
+                            <input type="text" value=" <?php echo $address['shipping']['city'] ?>" placeholder="city">
+                        </span><br>
+                            <span>
+                            <input type="text" value="<?php echo $address['shipping']['country'] ?>" placeholder="country">
+                        </span><br>
+                            <span>
+                            <input type="text" value="<?php echo $address['shipping']['region'] ?>" placeholder="region id">
+                        </span><br>
+                            <span>
+                            <input type="text" value=" <?php echo $address['shipping']['postcode'] ?>" placeholder="postcode">
+                        </span><br>
+                        <?php } else { ?>
+                            <span><?php echo __('no data') ?></span>
+                        <?php } ?>
+                    </address>
+                </div>
+            </div>
+        </section>
+        <input name="order_id" value="1" type="hidden">
+
+        <section class="admin__page-section order-view-billing-shipping">
+            <div class="admin__page-section-title">
+                <span class="title"><?php echo  __('Payment &amp; Shipping Method') ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div class="admin__page-section-item order-payment-method">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php echo  __('Payment Information') ?></span>
+                    </div>
+                    <div class="admin__page-section-item-content">
+                        <div class="order-payment-method-title"><?php echo  __('Check/Money order') ?></div>
+                        <div class="order-payment-additional">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin__page-section-item order-shipping-method">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php echo  __('Shipping &amp; Handling Information') ?></span>
+                    </div>
+                    <div class="admin__page-section-item-content">
+                        <strong><?php echo  __('Cost for shipping: ') ?></strong>
+                        <span class="price"><?php echo $block->getCurrencySymbol().$dataOrder->getShippingAmount();?></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="admin__page-section">
+            <div class="admin__page-section-title">
+                <span class="title">Items Ordered</span>
+            </div>
+            <div class="admin__table-wrapper">
+                <table class="data-table admin__table-primary edit-order-table">
+                    <thead>
+                    <tr class="headings">
+                        <th class="col-product"><span><?php echo __('Product') ?></span></th>
+                        <th class="col-status"><span><?php echo __('Item Status') ?></span></th>
+                        <th class="col-price-original"><span><?php echo __('Original Price') ?></span></th>
+                        <th class="col-price"><span><?php echo __('Price') ?></span></th>
+                        <th class="col-ordered-qty"><span><?php echo __('Qty') ?></span></th>
+                        <th class="col-subtotal"><span><?php echo __('Subtotal') ?></span></th>
+                        <th class="col-tax-amount"><span><?php echo __('Tax Amount') ?></span></th>
+                        <th class="col-tax-percent"><span><?php echo __('Tax Percent') ?></span></th>
+                        <th class="col-discont"><span><?php echo __('Discount Amount') ?></span></th>
+                        <th class="col-total last"><span><?php echo __('Row Total') ?></span></th>
+                    </tr>
+                    </thead>
+                    <tbody class="even">
+                    <?php foreach ($dataProduct as $info) :?>
+                    <tr>
+                        <td class="col-product"><div id="order_item_1">
+                                <div class="product-title"><span><?php echo $info['name'] ?></span></div>
+                                <div class="product-sku-block"><span><?php echo 'SKU: '.$info['name'] ?></span></div>
+                            </div></td>
+                        <td class="col-status"><?php echo __('Ordered') ?></td>
+                        <td class="col-price-original"><span class="price"><?php echo $currencySymbol.$info['price'] ?></span></td>
+                        <td class="col-price">
+                            <div class="price-excl-tax">
+                                <span class="price"><?php echo $currencySymbol.$info['price'] ?></span>
+                            </div>
+                        </td>
+                        <td class="col-ordered-qty"><table class="qty-table">
+                                <tbody><tr>
+                                    <td><?php echo $info['qty'] ?></td>
+                                </tr>
+                                </tbody></table>
+                        </td>
+                        <td class="col-subtotal">
+                            <div class="price-excl-tax">
+
+                                <span class="price"><?php echo $currencySymbol.($info['price']*$info['qty']) ?></span>
+                            </div>
+                        </td>
+                        <td class="col-tax-amount"><span class="price">$0.00</span></td>
+                        <td class="col-tax-percent">0%</td>
+                        <td class="col-discont"><span class="price">$0.00</span></td>
+                        <td class="col-total last">
+                            <span class="price"><?php echo $currencySymbol.($info['price']*$info['qty'])?></span></td>
+                    </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="admin__page-section">
+            <div class="admin__page-section-content">
+                <div class="admin__page-section-item order-totals">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php echo __('Order Totals') ?></span>
+                    </div>
+                    <table class="data-table admin__table-secondary order-subtotal-table">
+                        <tfoot>
+                        <tr class="col-0">
+                            <td class="label">
+                                <strong><?php echo __('Grand Total') ?></strong>
+                            </td>
+                            <td>
+                                <strong><span class="price"><?php echo $currencySymbol.$dataOrder->getGrandTotal(); ?></span></strong>
+                            </td>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        <tr class="col-1">
+                            <td class="label"><?php echo __('Shipping &amp; Handling') ?></td>
+                            <td>
+                                <span><span class="price"><?php echo $currencySymbol.$dataOrder->getShippingAmount(); ?></span></span>
+                            </td>
+                        </tr>
+                        <tr class="col-1">
+                            <td class="label"><?php echo __('Tax') ?></td>
+                            <td>
+                                <span><span class="price"><?php echo $currencySymbol.$dataOrder->getTaxAmount(); ?></span></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>

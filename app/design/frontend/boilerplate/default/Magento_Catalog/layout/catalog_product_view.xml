@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright В© 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <move element="product.info.main.row" destination="product.info.main" before="-" />
+        
+        <move element="page.main.title" destination="product.info.main.row.col1" before="-" />
+        <move element="product.info.sku" destination="product.info.main.row.col1" after="page.main.title" />
+        <move element="product.info.overview" destination="product.info.main.row.col1" after="product.info.sku" />
+        
+        <move element="product.info.media" destination="product.info.main.row.col2" before="-" />
+        
+        <move element="product.info.price" destination="product.info.main.row.col3" before="-" />
+        <move element="product.price.final" destination="product.info.price" before="-" />
+        <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final" />
+        <move element="product.info.review" destination="product.info.price" after="product.info.stock.sku" />        
+        <move element="product.price.tier" destination="product.info.main.row.col3" after="product.info.review" />
+        <move element="alert.urls" destination="product.info.main.row.col3" after="product.price.tier" />
+        <move element="product.info" destination="product.info.main.row.col3" after="alert.urls" />        
+        <move element="product.info.extrahint" destination="product.info.main.row.col3" after="product.info" />        
+        <move element="share.links.block" destination="product.info.extrahint" after="product.info.mailto" />        
+        
+        <container name="product.info.main.row" htmlTag="div" htmlClass="row" before="-">
+            <container name="product.info.main.row.col1" htmlTag="div" htmlClass="product-page-col col-lg-4 col-md-4 col-sm-4 col-xs-12" before="-" />
+            <container name="product.info.main.row.col2" htmlTag="div" htmlClass="product-page-col col-lg-5 col-md-5 col-sm-5 col-xs-12" after="product.info.main.row.col1" />
+            <container name="product.info.main.row.col3" htmlTag="div" htmlClass="product-page-col col-lg-3 col-md-3 col-sm-3 col-xs-12" after="product.info.main.row.col2">
+                <block class="Magento\Catalog\Block\Product\View" name="share.links.block" template="Magento_Catalog::product/view/share_links_block.phtml" />
+            </container>
+        </container>
+        
+    </body>
+</page>

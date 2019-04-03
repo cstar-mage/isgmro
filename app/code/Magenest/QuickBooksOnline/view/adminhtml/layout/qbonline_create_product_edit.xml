@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\QuickBooksOnline\Block\Adminhtml\Create\Product\Edit" name="qbonline_create_product_view"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magenest\QuickBooksOnline\Block\Adminhtml\Create\Product\Edit\Tabs" name="qbonline_create_product_view_tabs">
+            </block>
+        </referenceContainer>
+        <!--<referenceContainer name="js">-->
+            <!--<block class="Magenest\QuickBooksOnline\Block\Adminhtml\Create\Product\Edit\Js" template="create/product/js.phtml"/>-->
+        <!--</referenceContainer>-->
+    </body>
+</page>
